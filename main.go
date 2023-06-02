@@ -13,6 +13,7 @@ func main() {
 
 	dsn := "host=localhost user=postgres dbname=student password=root port=5432 sslmode=disable"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -23,6 +24,11 @@ func main() {
 	}
 
 	log.Println("Migration completed successfully")
-	routes.SetupRouter(db)
 
+	router := routes.SetupRouter(db)
+
+	err = router.Run(":5080")
+	if err != nil {
+		log.Fatal(err)
+	}
 }

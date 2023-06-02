@@ -4,7 +4,7 @@ import "database/sql"
 
 type User struct {
 	ID       int            `json:"id" validate:"required"`
-	Name     string         `json:"username" validate:"required"`
+	Name     string         `json:"name" validate:"required"`
 	Password string         `json:"password" validate:"required"`
 	Email    string         `json:"email" validate:"required"`
 	Gender   sql.NullString `json:"gender" validate:"required"`
